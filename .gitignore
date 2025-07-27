@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Uploads and temporary files
+uploads/
+temp/
+
+# Logs
+logs/
+*.log
+
+# Customer data (sensitive)
+customer_configs/*.json
+!customer_configs/customer_template.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backups
+backups/
+*.backup
