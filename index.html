@@ -105,50 +105,33 @@
         </div>
         
         <div class="chemicals">
-            
-                <div class="chemical">
-                    <div class="chemical-header">
-                        <span class="bond-code">${chemical.bondCode}</span>
-                        <span class="chemical-name">${chemical.name}</span>
-                        <span class="pair-status ${chemical.pairType.toLowerCase()}">${chemical.pairType}</span>
-                    </div>
-                    
-                    <div class="chemical-details">
-                        <p><strong>Description:</strong> ${chemical.description}</p>
-                        <p><strong>Hazards:</strong> ${chemical.hazards}</p>
-                        <p><strong>Supplier:</strong> ${chemical.supplier}</p>
-                    </div>
-                    
-                    <div class="files">
-			${chemical.sds ? '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : '<span class="missing-file">🛡️ No SDS Available</span>'}
-			${chemical.literature ? '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : '<span class="missing-file">📄 No Literature Available</span>'}
-                    </div>
-                </div>
-            
-                <div class="chemical">
-                    <div class="chemical-header">
-                        <span class="bond-code">${chemical.bondCode}</span>
-                        <span class="chemical-name">${chemical.name}</span>
-                        <span class="pair-status ${chemical.pairType.toLowerCase()}">${chemical.pairType}</span>
-                    </div>
-                    
-                    <div class="chemical-details">
-                        <p><strong>Description:</strong> ${chemical.description}</p>
-                        <p><strong>Hazards:</strong> ${chemical.hazards}</p>
-                        <p><strong>Supplier:</strong> ${chemical.supplier}</p>
-                    </div>
-                    
-                    <div class="files">
-			${chemical.sds ? '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : '<span class="missing-file">🛡️ No SDS Available</span>'}
-			${chemical.literature ? '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : '<span class="missing-file">📄 No Literature Available</span>'}
-                    </div>
-                </div>
-            
+		${chemicals.map(chemical => {
+                return '<div class="chemical">' +
+                    '<div class="chemical-header">' +
+                        '<span class="bond-code">' + chemical.bondCode + '</span>' +
+                        '<span class="chemical-name">' + chemical.name + '</span>' +
+                        '<span class="pair-status ' + chemical.pairType.toLowerCase() + '">' + chemical.pairType + '</span>' +
+                    '</div>' +
+                    '<div class="chemical-details">' +
+                        '<p><strong>Description:</strong> ' + chemical.description + '</p>' +
+                        '<p><strong>Hazards:</strong> ' + chemical.hazards + '</p>' +
+                        '<p><strong>Supplier:</strong> ' + chemical.supplier + '</p>' +
+                    '</div>' +
+                    '<div class="files">' +
+                        (chemical.sds ? 
+                            '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : 
+                            '<span class="missing-file">🛡️ No SDS Available</span>') +
+                        (chemical.literature ? 
+                            '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : 
+                            '<span class="missing-file">📄 No Literature Available</span>') +
+                    '</div>' +
+                '</div>';
+            }).join('')}	
         </div>
         
         <div class="footer">
             <p>Professional GHS Binder System by <span class="rasco-brand">RascoWeb, Inc.</span></p>
-            <p>Bond-Integrated Chemical Management • Generated: 2025-07-28T01:21:20.531Z</p>
+            <p>Bond-Integrated Chemical Management • Generated: 2025-07-28T01:38:35.290Z</p>
             <p>🔑 2 chemicals with 1 complete bond pairs</p>
         </div>
     </div>
