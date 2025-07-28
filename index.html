@@ -5,38 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GHS Safety Binder - SQZR Cleaning Solutions</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .header { text-align: center; margin-bottom: 40px; }
-        .chemical { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
-        .files { margin-top: 10px; }
-        .files a { margin-right: 15px; color: #0066cc; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header { 
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white; text-align: center; padding: 40px;
+        }
+        .header h1 { margin: 0; font-size: 2.5em; font-weight: 300; }
+        .header h2 { margin: 10px 0; font-size: 1.8em; font-weight: 400; }
+        .header p { margin: 5px 0; opacity: 0.9; }
+        
+        .bond-info {
+            background: #f8f9fa; padding: 20px;
+            border-left: 5px solid #28a745; margin: 20px;
+            border-radius: 5px;
+        }
+        .bond-info h3 { margin: 0 0 10px 0; color: #28a745; }
+        
+        .chemicals { padding: 40px; }
+        .chemical { 
+            margin: 30px 0; padding: 25px; 
+            border: 1px solid #e9ecef; border-radius: 10px;
+            background: #f8f9fa; transition: all 0.3s ease;
+        }
+        .chemical:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .chemical-header {
+            display: flex; align-items: center; margin-bottom: 15px;
+        }
+        .bond-code {
+            background: #007bff; color: white;
+            padding: 5px 12px; border-radius: 20px;
+            font-weight: bold; font-size: 0.9em; margin-right: 15px;
+        }
+        .chemical-name {
+            font-size: 1.4em; font-weight: 600; color: #2c3e50;
+        }
+        .pair-status {
+            margin-left: auto; padding: 5px 12px;
+            border-radius: 15px; font-size: 0.8em; font-weight: bold;
+        }
+        .complete { background: #d4edda; color: #155724; }
+        .singleton { background: #fff3cd; color: #856404; }
+        
+        .chemical-details {
+            margin: 15px 0; color: #6c757d;
+        }
+        .chemical-details p { margin: 8px 0; }
+        
+        .files { 
+            margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap;
+        }
+        .files a { 
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 20px; text-decoration: none;
+            border-radius: 25px; font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .sds-link { background: #dc3545; color: white; }
+        .sds-link:hover { background: #c82333; transform: translateY(-2px); }
+        .lit-link { background: #17a2b8; color: white; }
+        .lit-link:hover { background: #138496; transform: translateY(-2px); }
+        .missing-file {
+            color: #6c757d; font-style: italic; padding: 12px 20px;
+        }
+        
+        .footer {
+            background: #2c3e50; color: white; text-align: center; padding: 30px;
+        }
+        .footer p { margin: 5px 0; }
+        .rasco-brand { color: #3498db; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>GHS Safety Binder</h1>
-        <h2>SQZR Cleaning Solutions</h2>
-        <p>Last Updated: 7/27/2025</p>
-    </div>
-    
-    <div class="chemicals">
+    <div class="container">
+        <div class="header">
+            <h1>🧪 GHS Safety Binder</h1>
+            <h2>SQZR Cleaning Solutions</h2>
+            <p>Professional Chemical Safety Documentation</p>
+            <p>Last Updated: 7/27/2025</p>
+        </div>
         
-            <div class="chemical">
-                <h3>ENA Disinfectant Bowl and Bathroom Cleaner</h3>
-                <p><strong>Description:</strong> Every Day Non-Acid Bowl and Bathroom Cleaner</p>
-                <p><strong>Hazards:</strong> Serious eye damage/eye irritation.
-</p>
-                <div class="files">
-                    <a href="pdfs/2.0 319 e_n_a disinfectant literature.pdf" target="_blank">📄 Product Literature</a>
-                    <a href="pdfs/2.1 319 e_n_a disinfectant sds.pdf" target="_blank">🛡️ Safety Data Sheet</a>
+        <div class="bond-info">
+            <h3>🔑 Bond Engine Integration</h3>
+            <p>Files automatically paired and organized using Chemical Bond Engine technology</p>
+            <p><strong>Total Chemical Pairs:</strong> 2</p>
+        </div>
+        
+        <div class="chemicals">
+            
+                <div class="chemical">
+                    <div class="chemical-header">
+                        <span class="bond-code">${chemical.bondCode}</span>
+                        <span class="chemical-name">${chemical.name}</span>
+                        <span class="pair-status ${chemical.pairType.toLowerCase()}">${chemical.pairType}</span>
+                    </div>
+                    
+                    <div class="chemical-details">
+                        <p><strong>Description:</strong> ${chemical.description}</p>
+                        <p><strong>Hazards:</strong> ${chemical.hazards}</p>
+                        <p><strong>Supplier:</strong> ${chemical.supplier}</p>
+                    </div>
+                    
+                    <div class="files">
+			${chemical.sds ? '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : '<span class="missing-file">🛡️ No SDS Available</span>'}
+			${chemical.literature ? '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : '<span class="missing-file">📄 No Literature Available</span>'}
+                    </div>
                 </div>
-            </div>
+            
+                <div class="chemical">
+                    <div class="chemical-header">
+                        <span class="bond-code">${chemical.bondCode}</span>
+                        <span class="chemical-name">${chemical.name}</span>
+                        <span class="pair-status ${chemical.pairType.toLowerCase()}">${chemical.pairType}</span>
+                    </div>
+                    
+                    <div class="chemical-details">
+                        <p><strong>Description:</strong> ${chemical.description}</p>
+                        <p><strong>Hazards:</strong> ${chemical.hazards}</p>
+                        <p><strong>Supplier:</strong> ${chemical.supplier}</p>
+                    </div>
+                    
+                    <div class="files">
+			${chemical.sds ? '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : '<span class="missing-file">🛡️ No SDS Available</span>'}
+			${chemical.literature ? '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : '<span class="missing-file">📄 No Literature Available</span>'}
+                    </div>
+                </div>
+            
+        </div>
         
+        <div class="footer">
+            <p>Professional GHS Binder System by <span class="rasco-brand">RascoWeb, Inc.</span></p>
+            <p>Bond-Integrated Chemical Management • Generated: 2025-07-28T01:21:20.531Z</p>
+            <p>🔑 2 chemicals with 1 complete bond pairs</p>
+        </div>
     </div>
-    
-    <footer style="margin-top: 40px; text-align: center; color: #666;">
-        <p>Professional GHS Binder System by Rasco, Inc.</p>
-        <p>Generated: 2025-07-27T22:54:09.018Z</p>
-    </footer>
 </body>
 </html>
