@@ -7,35 +7,46 @@
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 40px;
+            margin: 0; 
+            padding: 40px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
         .container {
-            max-width: 1200px; margin: 0 auto; background: white;
-            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white;
+            border-radius: 15px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         .header { 
             background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white; text-align: center; padding: 40px;
+            color: white; 
+            text-align: center; 
+            padding: 40px;
         }
         .header h1 { margin: 0; font-size: 2.5em; font-weight: 300; }
         .header h2 { margin: 10px 0; font-size: 1.8em; font-weight: 400; }
         .header p { margin: 5px 0; opacity: 0.9; }
         
         .bond-info {
-            background: #f8f9fa; padding: 20px;
-            border-left: 5px solid #28a745; margin: 20px;
+            background: #f8f9fa; 
+            padding: 20px;
+            border-left: 5px solid #28a745; 
+            margin: 20px;
             border-radius: 5px;
         }
         .bond-info h3 { margin: 0 0 10px 0; color: #28a745; }
         
         .chemicals { padding: 40px; }
         .chemical { 
-            margin: 30px 0; padding: 25px; 
-            border: 1px solid #e9ecef; border-radius: 10px;
-            background: #f8f9fa; transition: all 0.3s ease;
+            margin: 30px 0; 
+            padding: 25px; 
+            border: 1px solid #e9ecef; 
+            border-radius: 10px;
+            background: #f8f9fa; 
+            transition: all 0.3s ease;
         }
         .chemical:hover {
             transform: translateY(-2px);
@@ -43,35 +54,54 @@
         }
         
         .chemical-header {
-            display: flex; align-items: center; margin-bottom: 15px;
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 15px;
         }
         .bond-code {
-            background: #007bff; color: white;
-            padding: 5px 12px; border-radius: 20px;
-            font-weight: bold; font-size: 0.9em; margin-right: 15px;
+            background: #007bff; 
+            color: white;
+            padding: 5px 12px; 
+            border-radius: 20px;
+            font-weight: bold; 
+            font-size: 0.9em; 
+            margin-right: 15px;
         }
         .chemical-name {
-            font-size: 1.4em; font-weight: 600; color: #2c3e50;
+            font-size: 1.4em; 
+            font-weight: 600; 
+            color: #2c3e50;
         }
         .pair-status {
-            margin-left: auto; padding: 5px 12px;
-            border-radius: 15px; font-size: 0.8em; font-weight: bold;
+            margin-left: auto; 
+            padding: 5px 12px;
+            border-radius: 15px; 
+            font-size: 0.8em; 
+            font-weight: bold;
         }
         .complete { background: #d4edda; color: #155724; }
         .singleton { background: #fff3cd; color: #856404; }
         
         .chemical-details {
-            margin: 15px 0; color: #6c757d;
+            margin: 15px 0; 
+            color: #6c757d;
         }
         .chemical-details p { margin: 8px 0; }
         
         .files { 
-            margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap;
+            margin-top: 20px; 
+            display: flex; 
+            gap: 15px; 
+            flex-wrap: wrap;
         }
         .files a { 
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 20px; text-decoration: none;
-            border-radius: 25px; font-weight: 500;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+            padding: 12px 20px; 
+            text-decoration: none;
+            border-radius: 25px; 
+            font-weight: 500;
             transition: all 0.3s ease;
         }
         .sds-link { background: #dc3545; color: white; }
@@ -79,11 +109,16 @@
         .lit-link { background: #17a2b8; color: white; }
         .lit-link:hover { background: #138496; transform: translateY(-2px); }
         .missing-file {
-            color: #6c757d; font-style: italic; padding: 12px 20px;
+            color: #6c757d; 
+            font-style: italic; 
+            padding: 12px 20px;
         }
         
         .footer {
-            background: #2c3e50; color: white; text-align: center; padding: 30px;
+            background: #2c3e50; 
+            color: white; 
+            text-align: center; 
+            padding: 30px;
         }
         .footer p { margin: 5px 0; }
         .rasco-brand { color: #3498db; font-weight: bold; }
@@ -100,39 +135,59 @@
         
         <div class="bond-info">
             <h3>🔑 Bond Engine Integration</h3>
-            <p>Files automatically paired and organized using Chemical Bond Engine technology</p>
+            <p>Files automatically paired by Chemical Bond Engine</p>
             <p><strong>Total Chemical Pairs:</strong> 2</p>
         </div>
         
         <div class="chemicals">
-		${chemicals.map(chemical => {
-                return '<div class="chemical">' +
-                    '<div class="chemical-header">' +
-                        '<span class="bond-code">' + chemical.bondCode + '</span>' +
-                        '<span class="chemical-name">' + chemical.name + '</span>' +
-                        '<span class="pair-status ' + chemical.pairType.toLowerCase() + '">' + chemical.pairType + '</span>' +
-                    '</div>' +
-                    '<div class="chemical-details">' +
-                        '<p><strong>Description:</strong> ' + chemical.description + '</p>' +
-                        '<p><strong>Hazards:</strong> ' + chemical.hazards + '</p>' +
-                        '<p><strong>Supplier:</strong> ' + chemical.supplier + '</p>' +
-                    '</div>' +
-                    '<div class="files">' +
-                        (chemical.sds ? 
-                            '<a href="pdfs/' + chemical.sds.filename + '" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>' : 
-                            '<span class="missing-file">🛡️ No SDS Available</span>') +
-                        (chemical.literature ? 
-                            '<a href="pdfs/' + chemical.literature.filename + '" class="lit-link" target="_blank">📄 Product Literature</a>' : 
-                            '<span class="missing-file">📄 No Literature Available</span>') +
-                    '</div>' +
-                '</div>';
-            }).join('')}	
+
+            <div class="chemical">
+                <div class="chemical-header">
+                    <span class="bond-code">DBJG8P</span>
+                    <span class="chemical-name">dt bowl cleaner</span>
+                    <span class="pair-status complete">
+                        COMPLETE
+                    </span>
+                </div>
+                <div class="chemical-details">
+                    <p><strong>Description:</strong> Professional dt bowl cleaner - Bond Code: DBJG8P</p>
+                    <p><strong>Hazards:</strong> See Safety Data Sheet for complete hazard information</p>
+                    <p><strong>Supplier:</strong> RascoWeb, Inc.</p>
+                </div>
+                <div class="files">
+                    <a href="pdfs/dt bowl cleaner SDS_DBJG8P.pdf" class="sds-link" target="_blank">🛡️ Safety Data Sheet</a>
+                    <a href="pdfs/dt bowl cleaner Literature_DBJG8P.pdf" class="lit-link" target="_blank">📄 Product Literature</a>
+                </div>
+            </div>
+
+            <div class="chemical">
+                <div class="chemical-header">
+                    <span class="bond-code">CGH327</span>
+                    <span class="chemical-name">complete ghs binder v2</span>
+                    <span class="pair-status singleton">
+                        SINGLETON
+                    </span>
+                </div>
+                <div class="chemical-details">
+                    <p><strong>Description:</strong> Professional complete ghs binder v2 - Bond Code: CGH327</p>
+                    <p><strong>Hazards:</strong> See Safety Data Sheet for complete hazard information</p>
+                    <p><strong>Supplier:</strong> RascoWeb, Inc.</p>
+                </div>
+                <div class="files">
+                    <span class="missing-file">🛡️ No SDS Available</span>
+                    <a href="pdfs/complete ghs binder v2 Literature_CGH327.pdf" class="lit-link" target="_blank">📄 Product Literature</a>
+                </div>
+            </div>
+
         </div>
         
         <div class="footer">
-            <p>Professional GHS Binder System by <span class="rasco-brand">RascoWeb, Inc.</span></p>
-            <p>Bond-Integrated Chemical Management • Generated: 2025-07-28T01:38:35.290Z</p>
-            <p>🔑 2 chemicals with 1 complete bond pairs</p>
+            <p>System by <span class="rasco-brand">RascoWeb, Inc.</span></p>
+            <p>Generated: 2025-07-28T03:44:49.835Z</p>
+            <p>
+                🔑 2 total –
+                1 complete pairs
+            </p>
         </div>
     </div>
 </body>
